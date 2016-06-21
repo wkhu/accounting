@@ -1,0 +1,139 @@
+doctype html
+html(ng-app="ExApp")
+	head
+		title ExApp
+		base(href="//#{base}/")
+		link(rel="stylesheet", href="https://file.myfontastic.com/7HCnDksY8ohXVDuTC7XgYJ/icons.css") 
+		// STYLES
+		link(rel="stylesheet", href="/styles/dependencies/angular-material.css")
+		link(rel="stylesheet", href="/styles/dependencies/md-data-table.min.css")
+		link(rel="stylesheet", href="/styles/common/profile/profile.css")
+		link(rel="stylesheet", href="/styles/common/settings/settings.css")
+		link(rel="stylesheet", href="/styles/user/app.css")
+		link(rel="stylesheet", href="/styles/user/dashboard/dashboard.css")
+		link(rel="stylesheet", href="/styles/user/expenses/expenses.css")
+		link(rel="stylesheet", href="/styles/user/inventory/inventory.css")
+		link(rel="stylesheet", href="/styles/user/item/item.css")
+		link(rel="stylesheet", href="/styles/user/sheets/sheets.css")
+		link(rel="stylesheet", href="/styles/user/transaction/transaction.css")
+		link(rel="stylesheet", href="/styles/user/unit/unit.css")
+		// STYLES END
+
+		// SCRIPTS
+		script(src="/js/dependencies/angular/angular.js")
+		script(src="/js/user/app.js")
+		script(src="/js/dependencies/angular/angular-animate.js")
+		script(src="/js/dependencies/angular/angular-aria.js")
+		script(src="/js/dependencies/angular/angular-material.js")
+		script(src="/js/dependencies/angular/angular-messages.js")
+		script(src="/js/dependencies/angular/angular-route.js")
+		script(src="/js/dependencies/angular/md-data-table.min.js")
+		script(src="/js/dependencies/directives/comparedTo.module.js")
+		script(src="/js/dependencies/lodash/lodash.js")
+		script(src="/js/dependencies/sails.io.js")
+		script(src="/js/common/NavigatorCtrl.js")
+		script(src="/js/common/profile/ProfileCtrl.js")
+		script(src="/js/common/services/activeUser.js")
+		script(src="/js/common/services/toast.js")
+		script(src="/js/common/settings/SettingsCtrl.js")
+		script(src="/js/user/dashboard/DashboardCtrl.js")
+		script(src="/js/user/expenses/ExpensesCtrl.js")
+		script(src="/js/user/inventory/InventoryCtrl.js")
+		script(src="/js/user/item/ItemCtrl.js")
+		script(src="/js/user/sheets/SheetsCtrl.js")
+		script(src="/js/user/transaction/TransactionCtrl.js")
+		script(src="/js/user/unit/UnitCtrl.js")
+		// SCRIPTS END
+
+
+	body(layout="row")
+		// TEMPLATES
+		script(type="text/javascript", src="templates/jst_user.js")
+		// TEMPLATES END
+		
+		div(ng-controller="NavigatorCtrl" layout="column" ng-cloak)
+			md-sidenav.md-sidenav-left.site-sidenav.md-whiteframe-z2(md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" flex)
+				md-toolbar.md-tall.md-hue-2
+					span(flex)
+					.inset(layout='column')
+						user-avatar
+						span
+						span {{ user.firstName }} {{ user.lastName }}
+						span {{ user.email }}
+				md-content(ng-cloak)
+					md-list.docs-menu
+						md-list-item(ng-click="navigateTo('Dashboard', $event)")
+							md-icon(md-font-icon="icon-bar-chart")
+							p
+								| Dashboard
+						//- md-list-item(ng-click="navigateTo('Sheets', $event)")
+						//- 	md-icon(md-font-icon="icon-database")
+						//- 	p
+						//- 		| Sheets
+						md-list-item(ng-click="navigateTo('Inventory', $event)")
+							md-icon(md-font-icon="icon-archive")
+							p
+								| Inventory
+						md-list-item(ng-click="navigateTo('Unit', $event)")
+							md-icon(md-font-icon="icon-underline")
+							p
+								| Unit
+						md-list-item(ng-click="navigateTo('Item', $event)")
+							md-icon(md-font-icon="icon-pricetag-multiple")
+							p
+								| Price List
+						md-list-item(ng-click="navigateTo('Transaction', $event)")
+							md-icon(md-font-icon="icon-balance-scale")
+							p
+								| Transaction
+
+						md-divider
+						md-subheader Management
+						md-list-item(ng-click="navigateTo('Profile', $event)")
+							md-icon(md-font-icon="icon-user")
+							p
+								| Profile
+						md-list-item(ng-click="navigateTo('Settings', $event)")
+							md-icon(md-font-icon="icon-cog")
+							p
+								| Settings
+						md-list-item(ng-click="navigateTo('Logout', $event)")
+							md-icon(md-font-icon="icon-power-off")
+							p
+								| Logout
+
+								
+					//- md-list
+					//- 	md-list-item(ng-click="navigateTo(item.title, $event)" ng-repeat="item in menu")
+					//- 		md-icon(md-font-icon="{{item.icon}}")
+					//- 		p
+					//- 			| {{item.title}}
+
+					//- 	md-divider
+					//- 	md-subheader Management
+					//- 	md-list-item(ng-click="navigateTo(item.title, $event)" ng-repeat="item in admin")
+					//- 		md-icon(md-font-icon="{{item.icon}}")
+					//- 		p
+					//- 			| {{item.title}}
+								}
+						
+		ng-view(layout="column" layout-fill ng-cloak)
+				
+		//- section
+		//- 	header
+		//- 	ng-view.slide-right
+		//- aside
+		//- 	ul
+		//- 		li(ng-class="{active:active('/')}")
+		//- 			a.icon-bar-chart(href="/")
+		//- 		li(ng-class="{active:active('/sheets')}")
+		//- 			a.icon-database(href="/sheets")
+		//- 	ul.down
+		//- 		li(ng-class="{active:active('/user')}")
+		//- 			a.icon-user(href="/user")
+		//- 		li.icon-power-off(ng-click="logout()")
+		//- md-button.md-fab.md-primary.md-fab-bottom-right(aria-label="Add" ng-click="showAdd($event)")
+		//- 	md-icon(md-font-icon="icon-plus" ng-style="{'font-size': fab + 'px', height: fab + 'px'}")
+			
+
+		

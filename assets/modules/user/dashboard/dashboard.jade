@@ -1,0 +1,45 @@
+md-toolbar.site-content-toolbar.md-whiteframe-2dp
+	.md-toolbar-tools.docs-toolbar-tools
+		md-button.md-icon-button(ng-click="toggleSidenav('left')" hide-gt-sm aria-label="Toggle Menu")
+			md-icon(md-font-icon="icon-bars")
+		div.fill-height(flex)
+			h2.md-headline Dashboard
+md-content(layout="column" layout-padding md-scroll-y flex)
+	p This is where you see totals and statistics
+
+	md-input-container
+		label Item
+		md-select(ng-model='chosenItem' name="item" required)
+			md-option(ng-repeat="item in items | orderBy:'itemName'" value='{{item.id}}')
+				| {{item.itemName}}
+
+	md-section(layout="row")
+		md-card(ng-repeat='stock in stocks')
+			md-toolbar.md-table-toolbar.md-default
+				.md-toolbar-tools
+					span {{stock[0].item.itemName}}
+			md-table-container
+				table(md-table md-progress='promise')
+					thead(md-head)
+						tr(md-row)
+							//- th(md-column) No.
+							th(md-column)
+								span Date
+							th(md-column md-numeric='true')
+								span Stock Balance
+							th(md-column md-numeric='true')
+								span Stock Value
+					tbody(md-body)
+						tr(md-row ng-repeat='item in stock')
+							//- td(md-cell) {{$index + 1}})
+							td(md-cell) {{item.date  | date:'MMM d'}}
+							td(md-cell) {{item.stockBalance}}
+							td(md-cell) {{item.stockValue}}
+					//- tfoot(md-foot)
+					//- 	tr(md-row)
+					//- 		td(md-cell colspan="7" style="text-align:right;")
+					//- 			strong Total: {{sum}}
+					//- 		td(md-cell colspan="2")
+	
+
+

@@ -1,0 +1,73 @@
+doctype html
+html(ng-app="ExApp")
+	head
+		title ExApp
+		base(href="//#{base}/")
+		link(rel="stylesheet", href="https://file.myfontastic.com/7HCnDksY8ohXVDuTC7XgYJ/icons.css") 
+		// STYLES
+		link(rel="stylesheet", href="/styles/dependencies/angular-material.css")
+		link(rel="stylesheet", href="/styles/dependencies/md-data-table.min.css")
+		link(rel="stylesheet", href="/styles/public/app.css")
+		link(rel="stylesheet", href="/styles/public/signup/signup.css")
+		// STYLES END
+
+		// SCRIPTS
+		script(src="/js/dependencies/angular/angular.js")
+		script(src="/js/public/app.js")
+		script(src="/js/dependencies/angular/angular-animate.js")
+		script(src="/js/dependencies/angular/angular-aria.js")
+		script(src="/js/dependencies/angular/angular-material.js")
+		script(src="/js/dependencies/angular/angular-messages.js")
+		script(src="/js/dependencies/angular/angular-route.js")
+		script(src="/js/dependencies/angular/md-data-table.min.js")
+		script(src="/js/dependencies/directives/comparedTo.module.js")
+		script(src="/js/dependencies/lodash/lodash.js")
+		script(src="/js/dependencies/sails.io.js")
+		script(src="/js/common/NavigatorCtrl.js")
+		script(src="/js/common/profile/ProfileCtrl.js")
+		script(src="/js/common/services/activeUser.js")
+		script(src="/js/common/services/toast.js")
+		script(src="/js/common/settings/SettingsCtrl.js")
+		script(src="/js/public/login/login.js")
+		script(src="/js/public/signup/signup.js")
+		// SCRIPTS END
+
+	body
+		// TEMPLATES
+		script(type="text/javascript", src="templates/jst_public.js")
+		// TEMPLATES END
+		//- .row
+		//- 	.column.large-3.large-offset-1.medium-5
+		//- 		section
+		//- 			form(action="/login",method="post")
+		//- 				h1 ExApp
+		//- 				figure
+		//- 					img(src="images/logo.png")
+		//- 				input(type="text",placeholder="email",name="email")
+		//- 				input(type="password",placeholder="password",name="password")
+		//- 				input.button.expand.radius(type="submit",value="LOG-IN")
+		//- 			footer
+		//- 				a forgot your password
+
+		//- div(layout='column', layout-align='center center', layout-wrap)
+		//- 	div(flex)
+		//- 		h1 ExApp
+		//- //- div(layout='row', layout-align='center center', layout-wrap)
+		//- //- md-content
+		//- form(name='login')
+		//- 	div(layout='row', layout-wrap, layout-align='center center')
+		//- 		md-input-container(flex="40", flex-sm='80', ng-class="{'login-form': error}")
+		//- 			label.login-label Email
+		//- 			input(type="email", ng-model="user.email", required, ng-change="changed()")
+		//- 	div(layout='row', layout-wrap, layout-align='center center')
+		//- 		md-input-container(flex="40", flex-sm='80', ng-class="{'login-form': error}")
+		//- 			label.login-label Password
+		//- 			input(type='password', ng-model="user.password", required, ng-change="changed()")
+		//- 	div(layout='row', layout-align='center center', layout-margin, layout-padding)
+		//- 		md-button.md-raised.md-primary.login-button(flex="20", flex-sm='40', ng-click="user.login()") Sign In
+		ng-view
+
+		
+		//- script#error-messages(type='text/ng-template')
+		//- 	div.signup-message(ng-message="required") This field is required.
+		//- 	div.signup-message(ng-message="unique") Password must match.

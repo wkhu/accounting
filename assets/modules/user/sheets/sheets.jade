@@ -1,0 +1,34 @@
+md-toolbar.site-content-toolbar.md-whiteframe-2dp
+	.md-toolbar-tools.docs-toolbar-tools
+		md-button.md-icon-button(ng-click="toggleSidenav('left')" hide-gt-sm aria-label="Toggle Menu")
+			md-icon(md-font-icon="icon-bars")
+		div.fill-height(flex)
+			h2.md-headline Sheets
+md-content(layout="column" layout-padding md-scroll-y flex ng-cloak)
+	p This is where you can create sheets
+	div(ng-if='sheets.length === 0' layout='row', layout-align='center center')
+		md-progress-circular(md-mode='indeterminate')
+	.sheets
+		md-grid-list(
+			md-cols="4"
+			md-row-height="1:1" 
+			md-gutter="50px"
+			)
+			md-grid-tile.md-whiteframe-1dp(
+				ng-click="navigateTo(sheet.id)"
+				ng-repeat="sheet in sheets" 
+				md-rowspan="1" 
+				md-colspan="1" 
+				ng-class="sheet.background"
+				)
+					md-icon(
+						md-font-icon="icon-folder-open" 
+						ng-style="{'font-size': sheet.size + 'px', height: sheet.size + 'px'}"
+					)
+					.test
+						md-grid-tile-footer
+							h3 {{sheet.name}}
+			
+md-button.md-fab.md-primary.md-fab-bottom-right.md-whiteframe-2dp(aria-label="Add" ng-click="showAdd($event)")
+	md-icon(md-font-icon="icon-plus" ng-style="{'font-size': fab + 'px', height: fab + 'px'}")
+

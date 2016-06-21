@@ -1,0 +1,11 @@
+md-dialog(aria-label='Add price dialog')
+     .md-content(layout='column')
+          h2  Add Price 
+          md-input-container
+               label  Price 
+               input(type='number', ng-model='price.amount')
+     md-dialog-actions
+          md-button.md-primary(ng-click='closeDialog()')
+               | Close Dialog
+          md-button.md-primary(ng-click='addPrice()')
+               | Add Price

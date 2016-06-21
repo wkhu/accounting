@@ -1,0 +1,26 @@
+$gray1: #22282e;
+$gray2: #2b313a;
+
+$black: #231f20;
+
+$blue1: #1c3b60;
+$blue2: #1c4563;
+$blue3: #3977b8;
+$blue4: #00adef;
+$blue5: #4d9cf2;
+
+$white_bg: #d7dce2;
+$white_fg: #f2f2f2;
+
+
+.training_page{
+	position: relative;
+	background: $white_bg;
+	width: 100%;
+	height: auto;
+	&>header{
+		width: 100%;
+		height: 63px;
+		background: $white_fg;
+	}
+}

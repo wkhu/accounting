@@ -1,0 +1,151 @@
+md-toolbar.site-content-toolbar.md-whiteframe-2dp
+	.md-toolbar-tools.docs-toolbar-tools
+		md-button.md-icon-button(ng-click="toggleSidenav('left')" hide-gt-sm aria-label="Toggle Menu")
+			md-icon(md-font-icon="icon-bars")
+		div.fill-height(flex)
+			h2.md-headline {{sheet.name}}
+md-content.md-inline-form.content-background(layout="column" layout-padding md-scroll-y flex)
+	p This is where you manage expenses(create, update, delete, view) 
+	//- md-subheader.md-primary 
+	//- 	div(layout="row") 
+	//- 		h2(flex='5')
+	//- 		h2(flex) Date
+	//- 		h2(flex) Category
+	//- 		h2(flex) Item
+	//- 		h2(flex='10') Quantity
+	//- 		h2(flex='10') Price
+	//- 		h2(flex) Total
+	//- md-list(layout-padding)
+	//- 	md-list-item(ng-repeat='expense in expenses.data')
+	//- 		p(flex='5') {{$index + 1}}
+	//- 		p(flex) {{expense.date | date:'MMM d'}}
+	//- 		p(flex) {{expense.category.name}}
+	//- 		p(flex) {{expense.item}}
+	//- 		p(flex='10') {{expense.quantity}}
+	//- 		p(flex='10') {{expense.price}}
+	//- 		p(flex) {{expense.isBorrowed? '':expense.total}}
+	//- 		p(flex) {{expense.isBorrowed? expense.total:''}}
+
+	md-card
+		form(name="expenseForm" ng-submit="expense.add()")
+			div(layout="row")
+				//- p(flex="5")
+				div(layout="column")
+					md-datepicker(name="date" ng-model="expense.date" md-placeholder="Enter date" required)
+					.validation-messages(ng-messages="expenseForm.date.$error" ng-show="expenseForm.date.$touched && expenseForm.date.$invalid")
+						div(ng-message="valid") The entered value is not a date!
+						div(ng-message="required") This date is required!
+				md-input-container
+					label Category
+					md-select(ng-model='expense.category' name="category" required)
+						md-option(ng-repeat="category in categories | orderBy:'name'" value='{{category.id}}')
+							| {{category.name}}
+					div(ng-messages="expenseForm.category.$error")
+						div(ng-message="required") Category is required.
+				md-input-container
+					label Item
+					input(ng-model="expense.item" name="item" required)
+					div(ng-messages="expenseForm.item.$error")
+						div(ng-message="required") Item is required.
+				md-input-container(flex='10')
+					label Quantity
+					input(type='number' step='any' ng-model="expense.quantity" name="quantity" required)
+					div(ng-messages="expenseForm.quantity.$error")
+						div(ng-message="required") Quantity is required.
+				md-input-container(flex='10')
+					label Price
+					input(type='number' step='any' ng-model="expense.price" name="price" required)
+					div(ng-messages="expenseForm.price.$error")
+						div(ng-message="required") Price is required.
+				md-button.md-raised.md-primary(type="submit" ng-disabled="expenseForm.$invalid") Add
+
+
+	//- md-card
+	//- 	md-toolbar.md-table-toolbar.md-default
+	//- 		.md-toolbar-tools
+	//- 			span Expenses
+	//- 	// exact table from live demo
+	//- 	md-table-container
+	//- 		table(md-table)
+	//- 			thead(md-head md-order="query.order" md-on-reorder="onReorder")
+	//- 				tr(md-row)
+	//- 					th(md-column md-order-by="date") Date
+	//- 					th(md-column md-order-by="category") Category
+	//- 					th(md-column md-order-by="item") Item
+	//- 					th(md-column md-numeric md-order-by="quantity") Quantity
+	//- 					th(md-column md-numeric md-order-by="price") Price
+	//- 					th(md-column md-numeric md-order-by="total") Total
+
+
+	//- 			tbody(md-body)
+	//- 				tr(md-row ng-repeat='expense in expenses.data')
+	//- 					td(md-cell) {{expense.date  | date:'MMM d'}}
+	//- 					td(md-cell) {{expense.category.name}}
+	//- 					td(md-cell) {{expense.item}}
+	//- 					td(md-cell) {{expense.quantity}}
+	//- 					td(md-cell) {{expense.price}}
+	//- 					td(md-cell) {{expense.total}}
+	//- 			tfoot(md-foot)
+	//- 				tr(md-row)
+	//- 					td(md-cell colspan="5")
+	//- 					td(md-cell) 
+	//- 						strong Total: {{sum}}
+
+	//- 	md-table-pagination(md-limit='query.limit' md-page='query.page' md-total='{{expenses.count}}' md-on-paginate='onPaginate' md-page-select)
+
+
+	md-card
+		md-toolbar.md-table-toolbar.md-default(ng-hide='options.rowSelection && selected.length')
+			.md-toolbar-tools
+				span Expenses
+				div(flex)
+				md-button(ng-click='loadStuff()') Async Operation
+		md-toolbar.md-table-toolbar.alternate(ng-show='options.rowSelection && selected.length')
+			.md-toolbar-tools
+				span {{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected
+		md-table-container
+			table(md-table md-row-select='options.rowSelection' ng-model='selected' md-progress='promise')
+				thead(md-head md-order='query.order' md-on-reorder='onReorder')
+					tr(md-row)
+						//- th(md-column) No.
+						th(md-column md-order-by='date')
+							span Date
+						th(md-column md-order-by='category')
+							span Category
+						th(md-column md-order-by='item')
+							span Item
+						th(md-column md-numeric='true' md-order-by='quantity')
+							span Quantity
+						th(md-column md-numeric='true' md-order-by='price')
+							span Price
+						th(md-column md-numeric='true' md-order-by='total')
+							span Total
+						th(md-column md-order-by='comment')
+							md-icon(md-font-icon="icon-comment")
+							span Comments
+						th(md-column)
+							span Action
+				tbody(md-body)
+					tr(md-row md-select='expense' md-on-select='logItem' md-auto-select='options.autoSelect' ng-repeat='expense in expenses.data')
+						//- td(md-cell) {{$index + 1}})
+						td(md-cell) {{expense.date  | date:'MMM d'}}
+						td(md-cell) 
+							md-select(ng-model='expense.category.id' placeholder='Category')
+								md-option(ng-repeat="category in categories | orderBy:'name'" ng-value='category.id')
+									| {{category.name}}
+						td(md-cell) {{expense.item}}
+						td(md-cell) {{expense.quantity}}
+						td(md-cell) {{expense.price}}
+						td(md-cell) {{expense.total}}
+						td(md-cell ng-click='editComment($event, expense)' ng-class="{'md-placeholder': !expense.comment}")
+							| {{expense.comment || 'Add a comment'}}
+						td(md-cell)
+							md-button.md-icon-button
+								md-icon(ng-click='doSecondaryAction($event)', aria-label='Delete', md-font-icon='icon-trash')
+				tfoot(md-foot)
+					tr(md-row)
+						td(md-cell colspan="7" style="text-align:right;")
+							strong Total: {{sum}}
+						td(md-cell colspan="2")
+		md-table-pagination(md-limit='query.limit' md-options='limits' md-page='query.page' md-total='{{expenses.count}}' md-page-select='options.pageSelector' md-boundary-links='options.boundaryLinks' md-on-paginate='onPaginate')
+

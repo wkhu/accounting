@@ -1,0 +1,38 @@
+md-dialog.md-inline-form(aria-label='Edit item dialog')
+     md-dialog-content.md-dialog-content(layout='column')
+          h2  Edit {{item.itemName}} 
+          md-input-container
+               label  Name 
+               input(ng-model='item.itemName')
+          md-input-container
+               label  Description 
+               input(ng-model='item.description')
+          div(layout)
+               md-input-container
+                    label  Unit 
+                    md-select(ng-model='item.unit.id')
+                         md-option(ng-repeat="unit in units | orderBy:'unitName'" value='{{unit.id}}')
+                              | {{unit.unitName}}
+               md-input-container
+                    label  Price
+                    input(type='number', ng-model='item.price')
+          //- div(layout="column" ng-repeat="price in item.price")
+          //-      div(layout)
+          //-           md-input-container
+          //-                label  Price {{$index + 1}}
+          //-                input(type='number', ng-model='price.amount')
+          //-           md-button.md-icon-button
+          //-                md-icon(ng-click='deletePrice(price)', aria-label='Delete', md-font-icon='icon-times')
+
+          //- div(layout)
+          //-      md-input-container
+          //-           label New Price
+          //-           input(type='number', ng-model='newPrice')
+          //-      md-button.md-primary(ng-click='addPrice()')
+          //-           | Add price
+          
+     md-dialog-actions
+          md-button.md-primary(ng-click='closeDialog()')
+               | Close
+          md-button.md-primary(ng-click='save()')
+               | Save

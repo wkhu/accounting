@@ -1,0 +1,95 @@
+md-toolbar.site-content-toolbar.md-whiteframe-2dp
+	.md-toolbar-tools
+		md-button.md-icon-button(ng-click="toggleSidenav('left')" hide-gt-sm aria-label="Toggle Menu")
+			md-icon(md-font-icon="icon-bars")
+		div.fill-height(flex)
+			h2.md-headline Users
+md-content(layout="column" layout-padding md-scroll-y flex)
+	p This is where you manage users(create, update, delete, view)
+	md-content.md-inline-form(layout='column', layout-fill)
+		//- div.subheader
+		//- 	ul(layout='row', flex)
+		//- 		li(flex='5')
+		//- 		li(flex) Name
+		//- 		li(flex) Email
+		//- 		li(flex) Username
+		//- 		li(flex) User Type
+		//- 		li(flex) Status
+		//- 		li(flex) Last Logged In
+		//- div.table-content
+		//- 	ul(ng-repeat='user in users track by $index', layout='row', flex, ng-click='showDetails(user)')
+		//- 		li(flex='5') {{$index + 1}}
+		//- 		li(flex style='color: #424242') {{user.firstName}} {{user.lastName}}
+		//- 		li(flex, hide-sm) {{user.email}}
+		//- 		li(flex) {{user.username}}
+		//- 		li(flex) {{user.userType}}
+		//- 		li(flex) {{user.status}}
+		//- 		li(flex) {{user.lastLoggedIn}}
+	md-toolbar.md-table-toolbar.alternate(ng-show='options.rowSelection && selected.length')
+		.md-toolbar-tools
+			span {{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected
+	// exact table from live demo
+	md-table-container
+		table(md-table md-row-select='options.rowSelection' ng-model='selected' md-progress='promise')
+			thead(md-head md-order='query.order' md-on-reorder='onReorder')
+				tr(md-row)
+					th(md-column) No.
+					th(md-column md-order-by='lastName')
+						span User
+					th(md-column md-order-by='userType')
+						span Type
+					th(md-column md-order-by='status')
+						span Status
+					th(md-column md-order-by='lastLoggedIn')
+						span Last Logged In
+					th(md-column style="text-align: center;")
+						span Actions
+			tbody(md-body)
+				tr(md-row ng-show="users.data.length == 0") 
+					td(md-cell colspan="3" style="text-align: center;") No records found.
+				tr(md-row md-select='user' md-select-id='{{user.id}}' ng-repeat='user in users.data')
+					td(md-cell) {{$index + 1}}
+					td(md-cell)
+						.md-list-item-text
+							h3 {{user.firstName}} {{user.lastName}}
+							h4 {{user.email}}
+							p {{user.username}}
+					td(md-cell) {{user.userType == 1? 'Admin':'User'}}
+					td(md-cell) {{user.status == 1? 'Active':'Inactive'}}
+					td(md-cell) {{user.lastLoggedIn | date:'medium'}}
+					td(md-cell style="text-align: center;")
+						md-button.md-icon-button
+							md-icon(ng-click='editUser($event, user)', aria-label='Edit', md-font-icon='icon-pencil-square-o')
+						md-button.md-icon-button
+							md-icon(ng-click='delete(user.id)', aria-label='Delete', md-font-icon='icon-trash')
+
+	md-table-pagination(md-limit='query.limit' md-options='limits' md-page='query.page' md-total='{{users.count}}' md-page-select='options.pageSelector' md-boundary-links='options.boundaryLinks' md-on-paginate='onPaginate')
+
+
+	//- form(name="userForm" ng-submit="addUser()")
+	//- 	div(layout="row")
+	//- 		md-autocomplete(
+	//- 			required
+	//- 			md-input-name='unitName'
+	//- 			md-selected-item='selectedItem'
+	//- 			md-search-text='searchText'
+	//- 			md-items='item in querySearch(searchText)'
+	//- 			md-item-text='item.display'
+	//- 			md-floating-label='Unit name')
+	//- 			md-item-template
+	//- 				span(md-highlight-text='searchText') {{item.display}}
+	//- 			md-not-found
+	//- 				| Unit name unique.
+	//- 			div(ng-messages='unitForm.unitName.$error', ng-if='unitForm.unitName.$touched')
+	//- 				div(ng-message='required')
+	//- 					| You 
+	//- 					b must
+	//- 					|  have a unit name.
+	//- 		//- md-input-container
+	//- 		//- 	label Unit name
+	//- 		//- 	input(ng-model="unit.unitName" name="unitName" required)
+	//- 		//- 	div(ng-messages="unitForm.unitName.$error")
+	//- 		//- 		div(ng-message="required") Unit name is required.
+
+	//- 		span
+	//- 			md-button.md-raised.md-primary(type="submit" ng-disabled="unitForm.$invalid") Add

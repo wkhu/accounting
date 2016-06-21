@@ -1,0 +1,68 @@
+md-toolbar.site-content-toolbar.md-whiteframe-2dp
+	.md-toolbar-tools
+		md-button.md-icon-button(ng-click="toggleSidenav('left')" hide-gt-sm aria-label="Toggle Menu")
+			md-icon(md-font-icon="icon-bars")
+		div.fill-height(flex)
+			h2.md-headline Units
+md-content(layout="column" layout-padding md-scroll-y flex)
+	p This is where you manage units(create, update, delete, view)
+
+	form(name="unitForm" ng-submit="addUnit()")
+		div(layout="row")
+			md-autocomplete(
+				required
+				md-input-name='unitName'
+				md-selected-item='selectedItem'
+				md-search-text='searchText'
+				md-items='item in querySearch(searchText)'
+				md-item-text='item.display'
+				md-floating-label='Unit name')
+				md-item-template
+					span(md-highlight-text='searchText') {{item.display}}
+				md-not-found
+					| Unit name unique.
+				div(ng-messages='unitForm.unitName.$error', ng-if='unitForm.unitName.$touched')
+					div(ng-message='required')
+						| You 
+						b must
+						|  have a unit name.
+			//- md-input-container
+			//- 	label Unit name
+			//- 	input(ng-model="unit.unitName" name="unitName" required)
+			//- 	div(ng-messages="unitForm.unitName.$error")
+			//- 		div(ng-message="required") Unit name is required.
+
+			span
+				md-button.md-raised.md-primary(type="submit" ng-disabled="unitForm.$invalid") Add
+
+	//- md-toolbar.md-table-toolbar.md-default(ng-hide='options.rowSelection && selected.length')
+	//- 	.md-toolbar-tools.docs-toolbar-tools
+	//- 		span Units
+	//- 		div(flex)
+	//- 		md-button(ng-click='loadStuff()') Async Operation
+	md-toolbar.md-table-toolbar.alternate(ng-show='options.rowSelection && selected.length')
+		.md-toolbar-tools
+			span {{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected
+	// exact table from live demo
+	md-table-container
+		table(md-table md-row-select='options.rowSelection' ng-model='selected' md-progress='promise')
+			thead(md-head md-order='query.order' md-on-reorder='onReorder')
+				tr(md-row)
+					th(md-column) No.
+					th(md-column md-order-by='unitName')
+						span Unit Name
+					th(md-column)
+						span Action
+			tbody(md-body)
+				tr(md-row ng-show="units.data.length == 0") 
+					td(md-cell colspan="3" style="text-align: center;") No records found.
+				tr(md-row md-select='unit' md-select-id='{{unit.id}}' ng-repeat='unit in units.data')
+					td(md-cell) {{$index + 1}}
+					//- td(md-cell) {{unit.unitName}}
+					td(md-cell ng-click="editUnit($event, unit)" ng-class="{'md-placeholder': !unit.unitName}")
+						| {{unit.unitName}}
+					td(md-cell)
+						md-button.md-icon-button
+							md-icon(ng-click='delete(unit.id)', aria-label='Delete', md-font-icon='icon-trash')
+
+	md-table-pagination(md-limit='query.limit' md-options='limits' md-page='query.page' md-total='{{units.count}}' md-page-select='options.pageSelector' md-boundary-links='options.boundaryLinks' md-on-paginate='onPaginate')

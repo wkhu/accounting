@@ -1,0 +1,145 @@
+//- .md-menu-demo(ng-controller="BasicDemoCtrl as ctrl", ng-cloak)
+//-       .menu-demo-container(layout-align="center center", layout="column")
+//-         h2.md-title Simple dropdown menu
+//-         p
+//-           | Applying the 
+//-           code md-menu-origin
+//-           |  and 
+//-           code md-menu-align-target
+//-           |  attributes ensure that the menu elements align.
+//-           |     Note: If you select the Redial menu option, then a modal dialog will zoom out of the phone icon button.
+
+div(layout="column" layout-align="center center" ng-cloak)
+	header
+		h1 Create an Account
+	md-content.md-whiteframe-z1(layout-padding)
+		form(name="signupForm" ng-submit="signup()")
+			div(layout="column")
+				div(layout="row")
+					md-input-container.md-icon-float.md-block
+						label First name
+						md-icon(md-font-icon="icon-vcard")
+						input(ng-model="user.firstName" name="firstName" required)
+						div(ng-messages="signupForm.firstName.$error")
+							div(ng-message="required") First name is required.
+					md-input-container.md-block
+						label Last name
+						input(ng-model="user.lastName" name="lastName" required)
+						div(ng-messages="signupForm.lastName.$error")
+							div(ng-message="required") Last name is required.
+				md-input-container.md-icon-float.md-block
+					label Username
+					md-icon(md-font-icon="icon-user")
+					input(ng-model="user.username" name="username" required)
+					div(ng-messages="signupForm.username.$error")
+						div(ng-message="required") Username is required.
+				md-input-container.md-icon-float.md-block
+					label Email
+					md-icon(md-font-icon="icon-mail")
+					input(ng-model="user.email" name="email" ng-pattern="pattern" required)
+					div(ng-messages="signupForm.email.$error")
+						//- div(ng-message="required") Email is required.
+						//- div(ng-message="pattern") Your email must look like an e-mail address.
+						div(ng-message-exp="['required', 'pattern']") Email is required and must look like an e-mail address.
+				div(layout="row")
+					md-input-container.md-icon-float.md-block
+						label Password
+						md-icon(md-font-icon="icon-lock")
+						input(type="password" name="password" ng-model="user.password" required)
+						div(ng-messages="signupForm.password.$error")
+							div(ng-message="required") Password is required.
+					//- div(flex='5', hide-xs='', hide-sm='')
+					//- 	// Spacer //
+					md-input-container.md-block
+						label Confirm Password
+						input(type="password" name="confirmPassword" ng-model="user.confirmPassword" required compared-to="user.password")
+						//- div.signup-messages(ng-if="signupForm.confirmPassword.$dirty", ng-messages="signupForm.confirmPassword.$error", role="alert")
+						//- 	div(ng-messages-include="error-messages")
+						div(ng-messages="signupForm.confirmPassword.$error")
+							div(ng-message="required") Confirmation password is required.
+							div(ng-message="unique") Password must match.
+
+				md-button.md-raised.md-primary(type="submit" ng-disabled="signupForm.$invalid") Sign Up
+
+	p
+		|Go back to 
+		a(href="/login") Login
+//- form(name="signupForm", ng-submit="user.signup()")
+	div(layout="row", layout-wrap, layout-align="center center")
+		md-input-container(flex="40", flex-sm="80")
+			label First Name
+			input(name="firstName", ng-model="user.firstName", required)
+
+		md-input-container(flex="40", flex-sm="80")
+			label Last Name
+			input(name="lastName", ng-model="user.lastName", required)
+
+		md-input-container(flex="40", flex-sm="80")
+			label Email
+			input(type="email", name="email", ng-model="user.email", required)
+
+		md-input-container(flex="40", flex-sm="80")
+			label Password
+			input(type="password", name="password", ng-model="user.password", required)
+
+		md-input-container(flex="40", flex-sm="80")
+			label Confirm Password
+			input(type="password", name="confirmPassword", ng-model="user.confirmPassword", required, compared-to="user.password")
+
+		span(ng-show="signupForm.confirmPassword.$invalid") Password must match.
+		span(ng-show="signupForm.confirmPassword.$error.required") Confirmation password is required.
+
+
+		md-button.md-raised.md-primary.login-button(flex="20", flex-sm="40", type="submit", ng-disabled="signupForm.$invalid") Sign Up
+
+//- .md-inline-form(layout="column", ng-cloak="")
+//- 	md-content(md-theme="docs-dark", layout-gt-sm="row", layout-padding="")
+//- 		div
+//- 			md-input-container
+//- 				label Title
+//- 				input(ng-model="user.title")
+//- 			md-input-container
+//- 				label Email
+//- 				input(ng-model="user.email", type="email")
+//- 	md-content(layout-padding="")
+//- 		div
+//- 			form(name="userForm")
+//- 				div(layout-gt-xs="row")
+//- 					md-input-container.md-block(flex-gt-xs="")
+//- 						label Company (Disabled)
+//- 						input(ng-model="user.company", disabled="")
+//- 					md-datepicker(ng-model="user.submissionDate", md-placeholder="Enter date")
+//- 				div(layout-gt-sm="row")
+//- 					md-input-container.md-block(flex-gt-sm="")
+//- 						label First name
+//- 						input(ng-model="user.firstName")
+//- 					md-input-container.md-block(flex-gt-sm="")
+//- 						label Last Name
+//- 						input(ng-model="theMax")
+//- 					md-input-container.md-block
+//- 						label Address
+//- 						input(ng-model="user.address")
+//- 					md-input-container.md-block(md-no-float="")
+//- 						input(ng-model="user.address2", placeholder="Address 2")
+//- 				div(layout-gt-sm="row")
+//- 					md-input-container.md-block(flex-gt-sm="")
+//- 						label City
+//- 						input(ng-model="user.city")
+//- 					md-input-container.md-block(flex-gt-sm="")
+//- 						label State
+//- 						md-select(ng-model="user.state")
+//- 							md-option(ng-repeat="state in states", value="{{state.abbrev}}")
+//- 								| {{state.abbrev}}
+//- 					md-input-container.md-block(flex-gt-sm="")
+//- 						label Postal Code
+//- 						input(name="postalCode", ng-model="user.postalCode", placeholder="12345", required="", ng-pattern="/^[0-9]{5}$/", md-maxlength="5")
+//- 						div(ng-messages="userForm.postalCode.$error", role="alert", multiple="")
+//- 							.my-message(ng-message="required") You must supply a postal code.
+//- 							.my-message(ng-message="pattern")
+//- 								| That doesn"t look like a valid postal
+//- 								| code.
+//- 							.my-message(ng-message="md-maxlength")
+//- 								| Don"t use the long version silly...we don"t need to be that specific...
+//- 				md-input-container.md-block
+//- 					label Biography
+//- 					textarea(ng-model="user.biography", columns="1", md-maxlength="150", rows="5")

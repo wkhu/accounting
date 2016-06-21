@@ -1,0 +1,110 @@
+doctype html
+html(ng-app="ExApp")
+	head
+		title ExApp
+		base(href="//#{base}/")
+		link(rel="stylesheet", href="https://file.myfontastic.com/7HCnDksY8ohXVDuTC7XgYJ/icons.css") 
+		// STYLES
+		link(rel="stylesheet", href="/styles/dependencies/angular-material.css")
+		link(rel="stylesheet", href="/styles/dependencies/md-data-table.min.css")
+		link(rel="stylesheet", href="/styles/common/profile/profile.css")
+		link(rel="stylesheet", href="/styles/common/settings/settings.css")
+		link(rel="stylesheet", href="/styles/admin/app.css")
+		link(rel="stylesheet", href="/styles/admin/categories/categories.css")
+		link(rel="stylesheet", href="/styles/admin/users/users.css")
+		// STYLES END
+
+		// SCRIPTS
+		script(src="/js/dependencies/angular/angular.js")
+		script(src="/js/admin/app.js")
+		script(src="/js/dependencies/angular/angular-animate.js")
+		script(src="/js/dependencies/angular/angular-aria.js")
+		script(src="/js/dependencies/angular/angular-material.js")
+		script(src="/js/dependencies/angular/angular-messages.js")
+		script(src="/js/dependencies/angular/angular-route.js")
+		script(src="/js/dependencies/angular/md-data-table.min.js")
+		script(src="/js/dependencies/directives/comparedTo.module.js")
+		script(src="/js/dependencies/lodash/lodash.js")
+		script(src="/js/dependencies/sails.io.js")
+		script(src="/js/common/NavigatorCtrl.js")
+		script(src="/js/common/profile/ProfileCtrl.js")
+		script(src="/js/common/services/activeUser.js")
+		script(src="/js/common/services/toast.js")
+		script(src="/js/common/settings/SettingsCtrl.js")
+		script(src="/js/admin/categories/CategoriesCtrl.js")
+		script(src="/js/admin/users/UsersCtrl.js")
+		// SCRIPTS END
+
+
+	body(layout="row")
+		// TEMPLATES
+		script(type="text/javascript", src="templates/jst_admin.js")
+		// TEMPLATES END
+						
+		div(ng-controller="NavigatorCtrl" layout="column")
+			md-sidenav.md-sidenav-left.site-sidenav.md-whiteframe-z2(md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex)
+				md-toolbar.md-tall.md-hue-2
+					span(flex)
+					.inset(layout='column')
+						user-avatar
+						span
+						span {{ user.firstName }} {{ user.lastName }}
+						span {{ user.email }}
+				md-content(ng-cloak)
+					md-list.docs-menu
+						md-list-item(ng-click="navigateTo('Users', $event)")
+							md-icon(md-font-icon="icon-users")
+							p
+								| Users
+						//- md-list-item(ng-click="navigateTo('Categories', $event)")
+						//- 	md-icon(md-font-icon="icon-archive")
+						//- 	p
+						//- 		| Categories
+
+						md-divider
+						md-subheader Management
+						md-list-item(ng-click="navigateTo('Profile', $event)")
+							md-icon(md-font-icon="icon-user")
+							p
+								| Profile
+						md-list-item(ng-click="navigateTo('Settings', $event)")
+							md-icon(md-font-icon="icon-cog")
+							p
+								| Settings
+						md-list-item(ng-click="navigateTo('Logout', $event)")
+							md-icon(md-font-icon="icon-power-off")
+							p
+								| Logout
+					//- md-list
+					//- 	md-list-item(ng-click="navigateTo(item.title, $event)" ng-repeat="item in menu")
+					//- 		md-icon(md-font-icon="{{item.icon}}")
+					//- 		p
+					//- 			| {{item.title}}
+
+					//- 	md-divider
+					//- 	md-subheader Management
+					//- 	md-list-item(ng-click="navigateTo(item.title, $event)" ng-repeat="item in admin")
+					//- 		md-icon(md-font-icon="{{item.icon}}")
+					//- 		p
+					//- 			| {{item.title}}
+						
+		ng-view(layout="column" layout-fill ng-cloak)
+		//- aside
+		//- 	div(layout="row", layout-align="center center", layout-wrap)
+		//- 		h1 Admin View
+		//- 		a.icon-user(href="/user")
+		//- 		a.icon-power-off(href="/logout" target="_self")
+		//- section
+		//- 	header
+		//- 	ng-view.slide-right
+		//- aside(ng-controller="NavigatorCtrl")
+		//- 	ul
+		//- 		li(ng-class="{active:active('/users')}")
+		//- 			a.icon-users(href="/users")
+			//- ul.down
+			//- 	li(ng-class="{active:active('/settings')}")
+			//- 		a.i-gears(href="/settings")
+			//- 	li.i-power(ng-click="logout()")
+			//- alert-holder(position="top-right")
+			//- switch(position="bottom-right")
+		

@@ -1,0 +1,33 @@
+doctype html
+html(ng-app="ExApp")
+	head
+		title ExApp
+		base(href="//#{base}/")
+		link(rel="stylesheet", href="https://file.myfontastic.com/7HCnDksY8ohXVDuTC7XgYJ/icons.css") 
+		// STYLES
+		// STYLES END
+
+		// SCRIPTS
+		// SCRIPTS END
+
+	body(layout="row")
+		// TEMPLATES
+		// TEMPLATES END
+		
+		div(ng-controller="NavigatorCtrl" layout="column" ng-cloak)
+			md-sidenav.md-sidenav-left.site-sidenav.md-whiteframe-z2(md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" flex)
+
+				md-toolbar(md-scroll-shrink)
+					div.md-toolbar-tools
+						h3 Accounting App
+
+				md-content(role="navigation")
+					p hello
+					ul.side-menu
+						li.parent-list-item(ng-repeat="section in vm.menu.sections", ng-class="{'parentActive' : vm.isSectionSelected(section)}")
+							h2.menu-heading(ng-if="section.type === 'heading'" id="heading_{{ section.name | nospace }}")
+								| {{section}}
+							menu-link(section="section" ng-if="section.type === 'link'")
+							menu-toggle(section="section" ng-if="section.type === 'toggle'")
+
+		ng-view(layout="column" layout-fill ng-cloak)

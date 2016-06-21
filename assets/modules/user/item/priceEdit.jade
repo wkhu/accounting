@@ -1,0 +1,14 @@
+md-dialog(aria-label='Add price dialog')
+     .md-content(layout='column')
+          h2  Edit Price/s 
+          div(ng-repeat="price in prices")
+               md-input-container
+                    label  Price {{$index + 1}}
+                    input(type='number', ng-model='price.amount')
+               span set as default
+
+     md-dialog-actions
+          md-button.md-primary(ng-click='closeDialog()')
+               | Close Dialog
+          md-button.md-primary(ng-click='save()')
+               | Save

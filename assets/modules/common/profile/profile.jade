@@ -1,0 +1,40 @@
+md-toolbar.site-content-toolbar.md-whiteframe-2dp
+	.md-toolbar-tools
+		md-button.md-icon-button(ng-click="toggleSidenav('left')" hide-gt-sm aria-label="Toggle Menu")
+			md-icon(md-font-icon="icon-bars")
+		div.fill-height(flex)
+			h2.md-headline Profile
+md-content(layout="column" layout-padding md-scroll-y flex)
+	p This is where you can edit your profile information
+
+	div(layout layout-align="start start")
+		form(name="userForm" ng-submit="save()" flex="40")
+			div(layout="column")
+				md-input-container.md-block
+					label First name
+					//- md-icon(md-font-icon="icon-vcard")
+					input(ng-model="user.firstName" name="firstName" required)
+					div(ng-messages="userForm.firstName.$error")
+						div(ng-message="required") First name is required.
+				md-input-container.md-block
+					label Last name
+					input(ng-model="user.lastName" name="lastName" required)
+					div(ng-messages="userForm.lastName.$error")
+						div(ng-message="required") Last name is required.
+				md-input-container.md-block
+					label Username
+					//- md-icon(md-font-icon="icon-user")
+					input(ng-model="user.username" name="username" required)
+					div(ng-messages="userForm.username.$error")
+						div(ng-message="required") Username is required.
+				md-input-container.md-block
+					label Email
+					//- md-icon(md-font-icon="icon-mail")
+					input(ng-model="user.email" name="email" ng-pattern="pattern" required)
+					div(ng-messages="userForm.email.$error")
+						//- div(ng-message="required") Email is required.
+						//- div(ng-message="pattern") Your email must look like an e-mail address.
+						div(ng-message-exp="['required', 'pattern']") Email is required and must look like an e-mail address.
+
+				span
+					md-button.md-raised.md-primary(type="submit" ng-disabled="userForm.$invalid") Save

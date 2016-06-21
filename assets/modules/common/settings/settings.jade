@@ -1,0 +1,36 @@
+md-toolbar.site-content-toolbar.md-whiteframe-2dp
+	.md-toolbar-tools
+		md-button.md-icon-button(ng-click="toggleSidenav('left')" hide-gt-sm aria-label="Toggle Menu")
+			md-icon(md-font-icon="icon-bars")
+		div.fill-height(flex)
+			h2.md-headline Settings
+md-content(layout="column" layout-padding md-scroll-y flex)
+	p This is where you can change your password
+
+	div(layout layout-align="start start")
+		form(name="passwordForm" ng-submit="save()" flex="40")
+			div(layout="column")
+				md-input-container.md-block
+					label Current Password
+					//- md-icon(md-font-icon="icon-lock")
+					input(type="password" name="currentPassword" ng-model="user.currentPassword" required)
+					div(ng-messages="passwordForm.currentPassword.$error")
+						div(ng-message="required") Current Password is required.
+				//- div(flex='5', hide-xs='', hide-sm='')
+				//- 	// Spacer //
+				md-input-container.md-block
+					label New Password
+					//- md-icon(md-font-icon="icon-lock")
+					input(type="password" name="newPassword" ng-model="user.newPassword" required)
+					div(ng-messages="passwordForm.newPassword.$error")
+						div(ng-message="required") New Password is required.
+				md-input-container.md-block
+					label Confirm Password
+					input(type="password" name="confirmPassword" ng-model="user.confirmPassword" required compared-to="user.newPassword")
+					//- div.signup-messages(ng-if="signupForm.confirmPassword.$dirty", ng-messages="signupForm.confirmPassword.$error", role="alert")
+					//- 	div(ng-messages-include="error-messages")
+					div(ng-messages="passwordForm.confirmPassword.$error")
+						div(ng-message="required") Confirmation password is required.
+						div(ng-message="unique") Confirmation Password must match New Password.
+				span
+					md-button.md-raised.md-primary(type="submit" ng-disabled="passwordForm.$invalid") Submit
