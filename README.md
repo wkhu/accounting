@@ -24,7 +24,7 @@ git clone https://github.com/wkhu/accounting.git
 After you've cloned the app, first thing you'll need to do is open the terminal, navigate to the inside of your cloned repository and use npm to install all necessary dependencies.
 
 ```
-npm isntall
+npm install
 ```
 
 To run the app in the default port 1338 run this command in the terminal.
