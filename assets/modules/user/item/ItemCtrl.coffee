@@ -8,12 +8,12 @@ app.controller "ItemCtrl",[
     console.log "Items"
     $s.query = 
       order: '',
-      limit: 5,
+      limit: 10,
       page: 1
     $s.limits = [
-      5
       10
-      15  
+      20
+      30  
     ]
     $s.selected = []
     $s.options = 
@@ -27,11 +27,12 @@ app.controller "ItemCtrl",[
         if results
           $s.items = results
     list()
-
+    $touched = false
     reInit = ->
       $s.item = {}
       $s.itemForm.$setPristine()
       $s.itemForm.$setUntouched()
+      #$s.itemForm.price.$touched = false
 
     $http.get('/unit/list')
     .success (result) ->

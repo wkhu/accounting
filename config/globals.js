@@ -60,4 +60,11 @@ module.exports.globals = {
   ****************************************************************************/
 
 	// models: true
+  // _: require('lodash'),
+
+  // async: require('async'),
+
+  // sails: true,
+
+  // models: true
 };

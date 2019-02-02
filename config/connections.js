@@ -21,12 +21,12 @@
 
 module.exports.connections = {
   mongo: {
-    // adapter: 'sails-mongo',
-    // host: 'localhost',
-    // port: '27017',
-    // database: 'expenses'
     adapter: 'sails-mongo',
+    host: 'localhost',
+    port: '27017',
+    database: 'expenses'
+    //adapter: 'sails-mongo',
     // url: 'mongodb://accDb:accDb123@localhost:27017/expenses'
-    url: process.env.MONGO_URL || 'mongodb://accDb:accDb123@localhost:27017/expenses'
+    //url: process.env.MONGO_URL || 'mongodb://accDb:accDb123@localhost:27017/expenses'
   }
 };

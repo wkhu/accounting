@@ -8,12 +8,12 @@ app.controller "UnitCtrl",[
     console.log "units"
     $s.query = 
       order: '',
-      limit: 5,
+      limit: 10,
       page: 1
     $s.limits = [
-      5
       10
-      15  
+      20
+      30  
     ]
     $s.selected = []
     $s.options = 

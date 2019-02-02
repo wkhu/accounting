@@ -7,9 +7,9 @@ md-toolbar.site-content-toolbar.md-whiteframe-2dp
 md-content(layout="column" layout-padding md-scroll-y flex)
 	p This is where you see totals and statistics
 
-	md-input-container
+	md-input-container(layout)
 		label Item
-		md-select(ng-model='chosenItem' name="item" required)
+		md-select(ng-model='chosenItem' name="item" layout-padding required)
 			md-option(ng-repeat="item in items | orderBy:'itemName'" value='{{item.id}}')
 				| {{item.itemName}}
 
@@ -17,7 +17,7 @@ md-content(layout="column" layout-padding md-scroll-y flex)
 		md-card(ng-repeat='stock in stocks')
 			md-toolbar.md-table-toolbar.md-default
 				.md-toolbar-tools
-					span {{stock[0].item.itemName}}
+					span.md-title {{stock[0].item.itemName}}
 			md-table-container
 				table(md-table md-progress='promise')
 					thead(md-head)

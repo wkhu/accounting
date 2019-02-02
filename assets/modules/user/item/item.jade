@@ -26,7 +26,7 @@ md-content(layout="column" layout-padding md-scroll-y flex)
 					div(ng-message="required") Unit is required.
 			md-input-container
 				label Price
-				input(type="number" ng-model="item.price" name="price" required)
+				input(type="number" ng-model="item.price" name="price" step="0.01" required)
 				div(ng-messages="itemForm.price.$error")
 					div(ng-message="required") Price name is required.
 
