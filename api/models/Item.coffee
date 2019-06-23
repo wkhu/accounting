@@ -10,7 +10,5 @@ Item   =
     transactions:
       collection: 'transaction'
       via: 'item'
-    user:
-      model: "user"
 
 module.exports = Item

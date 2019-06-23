@@ -1,7 +1,6 @@
 module.exports =
   list: (req, res) ->
     console.log req.query,'unit list query'
-    id = req.session.passport.user.id
     unless isEmpty req.query
       params = req.query
       paginate = 
@@ -12,8 +11,7 @@ module.exports =
         order = order + ' desc'
         order = order.replace('-','')
 
-    console.log id,'unit curr user'
-    Unit.find().where({user:id}).sort(order).paginate(paginate)
+    Unit.find().sort(order).paginate(paginate)
     .exec (err, result) ->
       console.log err, result, 'units'
       Unit.count()
@@ -27,8 +25,9 @@ module.exports =
 
   create: (req, res) ->
     data = req.body
-    data.user = req.session.passport.user.id
     console.log data, 'unit create data'
+    data.unitName = data.unitName.toUpperCase()
+    console.log data.unitName,'caps'
     Unit.create data
     .exec (err, data) ->
       console.log err,data,'unit'

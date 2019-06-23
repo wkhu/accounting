@@ -4,8 +4,6 @@ Sheet   =
   attributes:
     name: "string"
     description: "string"
-    user:
-      model: "user"
     expenses:
       collection: "expense"
       via: "sheet"

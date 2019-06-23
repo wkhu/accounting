@@ -10,7 +10,6 @@ module.exports =
 
   list: (req, res) ->
     console.log req.query,'item list query'
-    id = req.session.passport.user.id
     unless isEmpty req.query
       params = req.query
       paginate = 
@@ -20,8 +19,7 @@ module.exports =
       if order.indexOf('-') > -1
         order = order + ' desc'
         order = order.replace('-','')
-    console.log id,'item curr user'
-    Item.find().where({user:id}).sort(order).paginate(paginate).populate('unit')
+    Item.find().sort(order).paginate(paginate).populate('unit')
     .exec (err, result) ->
       console.log err, result, 'items'
       Item.count()
@@ -35,7 +33,6 @@ module.exports =
 
   create: (req, res) ->
     data = req.body
-    data.user = req.session.passport.user.id
     if data.price && data.price.constructor isnt Array
       priceArr = []
       priceArr.push data.price

@@ -8,7 +8,5 @@ Transaction   =
     price: "float"
     type: "boolean"
     quantity: "integer"
-    user:
-      model: "user"
 
 module.exports = Transaction

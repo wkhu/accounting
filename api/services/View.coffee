@@ -6,7 +6,7 @@ roles = [
 
 View =
   render: (req, res) ->
-    # console.log req.headers.host, req.session.passport,'view'
+    console.log req.headers.host, req.session.passport,'view'
     base     = req.headers.host
     userData = req.session.passport
 
@@ -14,10 +14,10 @@ View =
       ###
       determine the active sessionType this user is using
       ###
-      console.log roles[userData.user.userType], base:base
+      console.log roles[userData.user.userType], base:base, 'roles'
       res.view roles[userData.user.userType], base:base
     else
-      console.log 'here'
+      console.log roles[0], base:base, 'here'
       res.view roles[0], base:base
 
 module.exports = View

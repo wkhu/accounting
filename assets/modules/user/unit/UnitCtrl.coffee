@@ -63,7 +63,7 @@ app.controller "UnitCtrl",[
 
     $s.unit = {}
     $s.addUnit = ->
-      $s.unit.unitName = if $s.selectedItem is null then $s.searchText else $s.selectedItem.value
+      # $s.unit.unitName = if $s.selectedItem is null then $s.searchText else $s.selectedItem.value
       console.log $s.unit,'add'
 
       $http

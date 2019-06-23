@@ -22,9 +22,10 @@ app.controller "UsersCtrl",[
     list = () ->
       $http.get('/user/list')
       .success (data) ->
-        console.log data,'data'
+        console.log data,'user data'
         if data
           $s.users = data
+          console.log $s.users, 'scope userss'
     list()
 
     $s.delete = (id)->

@@ -6,25 +6,25 @@ md-toolbar.site-content-toolbar.md-whiteframe-2dp
 			h2.md-headline Users
 md-content(layout="column" layout-padding md-scroll-y flex)
 	p This is where you manage users(create, update, delete, view)
-	md-content.md-inline-form(layout='column', layout-fill)
-		//- div.subheader
-		//- 	ul(layout='row', flex)
-		//- 		li(flex='5')
-		//- 		li(flex) Name
-		//- 		li(flex) Email
-		//- 		li(flex) Username
-		//- 		li(flex) User Type
-		//- 		li(flex) Status
-		//- 		li(flex) Last Logged In
-		//- div.table-content
-		//- 	ul(ng-repeat='user in users track by $index', layout='row', flex, ng-click='showDetails(user)')
-		//- 		li(flex='5') {{$index + 1}}
-		//- 		li(flex style='color: #424242') {{user.firstName}} {{user.lastName}}
-		//- 		li(flex, hide-sm) {{user.email}}
-		//- 		li(flex) {{user.username}}
-		//- 		li(flex) {{user.userType}}
-		//- 		li(flex) {{user.status}}
-		//- 		li(flex) {{user.lastLoggedIn}}
+	//- md-content.md-inline-form(layout='column', layout-fill)
+	//- 	div.subheader
+	//- 		ul(layout='row', flex)
+	//- 			li(flex='5')
+	//- 			li(flex) Name
+	//- 			li(flex) Email
+	//- 			li(flex) Username
+	//- 			li(flex) User Type
+	//- 			li(flex) Status
+	//- 			li(flex) Last Logged In
+	//- 	div.table-content
+	//- 		ul(ng-repeat='user in users track by $index', layout='row', flex, ng-click='showDetails(user)')
+	//- 			li(flex='5') {{$index + 1}}
+	//- 			li(flex style='color: #424242') {{user.firstName}} {{user.lastName}}
+	//- 			li(flex, hide-sm) {{user.email}}
+	//- 			li(flex) {{user.username}}
+	//- 			li(flex) {{user.userType}}
+	//- 			li(flex) {{user.status}}
+	//- 			li(flex) {{user.lastLoggedIn}}
 	md-toolbar.md-table-toolbar.alternate(ng-show='options.rowSelection && selected.length')
 		.md-toolbar-tools
 			span {{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected
@@ -54,7 +54,7 @@ md-content(layout="column" layout-padding md-scroll-y flex)
 							h3 {{user.firstName}} {{user.lastName}}
 							h4 {{user.email}}
 							p {{user.username}}
-					td(md-cell) {{user.userType == 1? 'Admin':'User'}}
+					td(md-cell) {{user.userType == 1? 'User':'Admin'}}
 					td(md-cell) {{user.status == 1? 'Active':'Inactive'}}
 					td(md-cell) {{user.lastLoggedIn | date:'medium'}}
 					td(md-cell style="text-align: center;")

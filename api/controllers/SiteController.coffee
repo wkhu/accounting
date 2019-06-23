@@ -2,7 +2,7 @@ passport = require 'passport'
 
 module.exports =
   index: (req, res) ->
-    console.log 'index'
+    console.log 'index sitecontroller'
     View.render req, res
 
   test: (req, res) ->
@@ -41,7 +41,8 @@ module.exports =
       req.logIn(user, (err) ->
         return res.negotiate(err) if err
         console.log user,'user'
-        User.update(user.id, lastLoggedIn: new Date())
+        console.log user._id, user.id, 'user id'
+        User.update({email:user.email}, {lastLoggedIn: new Date()})
         .exec (err, updated) ->
           if err
             return res.negotiate(err)

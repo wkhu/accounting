@@ -9,29 +9,28 @@ md-content(layout="column" layout-padding md-scroll-y flex)
 
 	form(name="unitForm" ng-submit="addUnit()")
 		div(layout="row")
-			md-autocomplete(
-				required
-				md-input-name='unitName'
-				md-selected-item='selectedItem'
-				md-search-text='searchText'
-				md-items='item in querySearch(searchText)'
-				md-item-text='item.display'
-				md-floating-label='Unit name')
-				md-item-template
-					span(md-highlight-text='searchText') {{item.display}}
-				md-not-found
-					| Unit name unique.
-				div(ng-messages='unitForm.unitName.$error', ng-if='unitForm.unitName.$touched')
-					div(ng-message='required')
-						| You 
-						b must
-						|  have a unit name.
-			//- md-input-container
-			//- 	label Unit name
-			//- 	input(ng-model="unit.unitName" name="unitName" required)
-			//- 	div(ng-messages="unitForm.unitName.$error")
-			//- 		div(ng-message="required") Unit name is required.
-
+			//- md-autocomplete(
+			//- 	required
+			//- 	md-input-name='unitName'
+			//- 	md-selected-item='selectedItem'
+			//- 	md-search-text='searchText'
+			//- 	md-items='item in querySearch(searchText)'
+			//- 	md-item-text='item.display'
+			//- 	md-floating-label='Unit name' ng-model="unit.unitName" uppercased)
+			//- 	md-item-template
+			//- 		span(md-highlight-text='searchText') {{item.display}}
+			//- 	md-not-found
+			//- 		| Unit name unique.
+			//- 	div(ng-messages='unitForm.unitName.$error', ng-if='unitForm.unitName.$touched')
+			//- 		div(ng-message='required')
+			//- 			| You 
+			//- 			b must
+			//- 			|  have a unit name.
+			md-input-container
+				label Unit name
+				input(ng-model="unit.unitName" name="unitName" required uppercased)
+				div(ng-messages="unitForm.unitName.$error")
+					div(ng-message="required") Unit name is required.
 			span
 				md-button.md-raised.md-primary(type="submit" ng-disabled="unitForm.$invalid") Add
 

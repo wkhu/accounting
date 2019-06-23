@@ -12,7 +12,7 @@ app.controller "LoginCtrl", [
       $http
         .post '/login', $s.user
         .success (data) ->
-          console.log data,'data'
+          console.log data,'login data'
           # $window.location.href = '/'
           if data
             if data.message

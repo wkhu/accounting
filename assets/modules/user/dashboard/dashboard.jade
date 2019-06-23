@@ -34,7 +34,7 @@ md-content(layout="column" layout-padding md-scroll-y flex)
 							//- td(md-cell) {{$index + 1}})
 							td(md-cell) {{item.date  | date:'MMM d'}}
 							td(md-cell) {{item.stockBalance}}
-							td(md-cell) {{item.stockValue}}
+							td(md-cell) {{item.stockValue | number:2}}
 					//- tfoot(md-foot)
 					//- 	tr(md-row)
 					//- 		td(md-cell colspan="7" style="text-align:right;")

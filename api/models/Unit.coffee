@@ -5,7 +5,5 @@ Unit   =
     unitName: 
       type: "string"
       unique: true
-    user:
-      model: "user"
 
 module.exports = Unit

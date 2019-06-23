@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "InventoryCtrl.js",
+  "sourceRoot": "./",
+  "sources": [
+    "InventoryCtrl.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA,GAAG,CAAC,UAAJ,CAAe,UAAf,EAA0B;EACxB,QADwB,EAExB,OAFwB,EAGxB,YAHwB,EAIxB,eAJwB,EAKxB,WALwB,EAMxB,SAAC,EAAD,EAAK,KAAL,EAAY,UAAZ,EAAwB,aAAxB,EAAuC,SAAvC,GAAA;WACE,OAAO,CAAC,GAAR,CAAY,WAAZ,EADF;EAAA,CANwB;CAA1B,CAAA,CAAA"
+}

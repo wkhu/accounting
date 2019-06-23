@@ -1,5 +1,6 @@
 module.exports = function (grunt) {
-	var tasks = [],users = require("../pipeline").users;
+	var tasks = [],
+		users = require("../pipeline").users;
 
 	for(var user in users){
 		var names = {
@@ -15,7 +16,7 @@ module.exports = function (grunt) {
 			tasks.push("sails-linker:"+names[key]);
 		}
 	}
-	console.log(tasks, users);
+	console.log(tasks, users, 'linkAssests tasks,users');
 	grunt.registerTask('linkAssets',tasks);
 
 };

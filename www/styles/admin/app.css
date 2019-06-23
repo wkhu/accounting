@@ -1,0 +1,40 @@
+.site-content-toolbar {
+  background: #f6f6f6 !important;
+  color: #202020 !important;
+  z-index: 3; }
+
+span {
+  font-size: small; }
+
+/************
+ * DOCS MENU
+ ************/
+.site-sidenav md-content {
+  background: transparent; }
+
+.site-sidenav,
+.site-sidenav.md-locked-open-add-active,
+.site-sidenav.md-locked-open {
+  width: 200px;
+  min-width: 200px;
+  max-width: 200px; }
+
+.site-sidenav > * {
+  min-width: 160px; }
+
+.docs-menu .md-button:hover,
+.docs-menu .md-button:focus {
+  background: rgba(158, 158, 158, 0.2) !important; }
+
+.docs-menu .md-button.active {
+  background: rgba(158, 158, 158, 0.2); }
+
+td strong {
+  padding: 0 56px 0 0; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  background: #eee; }

@@ -20,7 +20,6 @@ module.exports =
 
   list: (req, res) ->
     console.log req.query,'trans list query'
-    id = req.session.passport.user.id
     unless isEmpty req.query
       params = req.query
       paginate = 
@@ -31,8 +30,7 @@ module.exports =
         order = order + ' desc'
         order = order.replace('-','')
     console.log req.session.passport,'passport'
-    console.log id,'trans curr user'
-    Transaction.find().where({user:id}).sort(order).paginate(paginate).populateAll()
+    Transaction.find().sort(order).paginate(paginate).populateAll()
     .exec (err, data) ->
       console.log err, data,'trans'
       Transaction.count()
@@ -46,7 +44,6 @@ module.exports =
 
   create: (req, res) ->
     data = req.body
-    data.user = req.session.passport.user.id
     console.log data, 'trans create data'
     Transaction.create data
     .exec (err, data) ->

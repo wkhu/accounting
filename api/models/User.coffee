@@ -21,7 +21,6 @@ User   =
       defaultsTo: 1
     lastLoggedIn: 
       type: "date"
-      defaultsTo: new Date()
 
   toJSON: ->
     obj = @toObject()

@@ -7,11 +7,12 @@ module.exports =
     console.log id,'id'
     User.findOne(id)
     .exec (err, data) ->
+      console.log data, 'user show data' 
       res.json data if data
       res.serverError err if err
       
   list: (req, res) ->
-    console.log req.query,'userquery'
+    console.log req.query,'userlist query'
     unless isEmpty req.query
       console.log 'sud cat'
       params = req.query
