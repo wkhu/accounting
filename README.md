@@ -78,7 +78,7 @@ To run the app in the default port 1338 run this command in the terminal.
 sails lift
 ```
 
-Or instead of sails list, you may also use nodemon which is a utility that will monitor for any changes in your source and automatically restart your server. Install it using npm.
+Or instead of sails lift, you may also use nodemon which is a utility that will monitor for any changes in your source and automatically restart your server. Install it using npm.
 
 ```
 npm install -g nodemon
