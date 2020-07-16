@@ -34,7 +34,7 @@
     "include-all": "^4.0.3",
     "jade": "^1.11.0",
     "kerberos": "0.0.19",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "mongodb": "^2.2.19",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
