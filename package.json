@@ -11,7 +11,7 @@
     "angular-material": "^1.0.5",
     "angular-messages": "^1.5.0",
     "angular-route": "^1.5.0",
-    "bcrypt": "^0.8.5",
+    "bcrypt": "^5.0.0",
     "coffee-script": "^1.10.0",
     "connect-mongo": "1.1.0",
     "ejs": "^2.5.5",
