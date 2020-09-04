@@ -33,7 +33,7 @@
     "grunt-sync": "^0.0.8",
     "include-all": "^4.0.3",
     "jade": "^1.11.0",
-    "kerberos": "0.0.19",
+    "kerberos": "1.0.0",
     "lodash": "^4.17.11",
     "mongodb": "^2.2.19",
     "passport": "^0.3.2",
